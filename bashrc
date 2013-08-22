@@ -6,4 +6,3 @@ export dotfiles=~/dotfiles
 . $dotfiles/ruby/aliases
 . $dotfiles/git/aliases
 . $dotfiles/dirb/dirb.sh
-. $dotfiles/ssh/ssh-agent
