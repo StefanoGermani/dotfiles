@@ -8,4 +8,4 @@ export dotfiles=~/dotfiles
 . $dotfiles/windows/microsoft/dotnet/aliases
 . $dotfiles/windows/microsoft/system/aliases
 . $dotfiles/dirb/dirb.sh
-. $dotfiles/ssh/env
+. $dotfiles/ssh/ssh-agent
