@@ -1,30 +1,46 @@
 # Note: ~/.ssh/environment should not be used, as it
 #       already has a different purpose in SSH.
 
-tempfile=~/.ssh/agent.env
- 
-#Check for an existing ssh-agent
-if [ -e $tempfile ]
-then
-    echo "Examining old ssh-agent"
-    . $tempfile
+env=~/.ssh/agent.env
+
+# Note: Don't bother checking SSH_AGENT_PID. It's not used
+#       by SSH itself, and it might even be incorrect
+#       (for example, when using agent-forwarding over SSH).
+
+agent_is_running() {
+    if [ "$SSH_AUTH_SOCK" ]; then
+        # ssh-add returns:
+        #   0 = agent running, has keys
+        #   1 = agent running, no keys
+        #   2 = agent not running
+        ssh-add -l >/dev/null 2>&1 || [ $? -eq 1 ]
+    else
+        false
+    fi
+}
+
+agent_has_keys() {
+    ssh-add -l >/dev/null 2>&1
+}
+
+agent_load_env() {
+    . "$env" >/dev/null
+}
+
+agent_start() {
+    (umask 077; ssh-agent >"$env")
+    . "$env" >/dev/null
+}
+
+if ! agent_is_running; then
+    agent_load_env
 fi
- 
-#See if the agent is still working
-ssh-add -l > /dev/null
- 
-#If it's not working yet, just start a new one.
-if [ $? != 0 ]
-then
-    echo "Old ssh-agent is dead..creating new agent."
- 
-    #Create a new ssh-agent if needed
-    ssh-agent -s > $tempfile
-    . $tempfile
- 
-    #Add the key
+
+if ! agent_is_running; then
+    agent_start
     ssh-add
-fi    
- 
-#Show the user which keys are being used.
-ssh-add -l
+elif ! agent_has_keys; then
+    ssh-add
+fi
+
+unset env
