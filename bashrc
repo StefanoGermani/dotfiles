@@ -5,5 +5,7 @@ export dotfiles=~/dotfiles
 . $dotfiles/bash/aliases
 . $dotfiles/ruby/aliases
 . $dotfiles/git/aliases
+. $dotfiles/git/contrib/git-completion.sh
+. $dotfiles/git/contrib/git-prompt.sh
 . $dotfiles/dirb/dirb.sh
 . $dotfiles/ssh/ssh-agent
