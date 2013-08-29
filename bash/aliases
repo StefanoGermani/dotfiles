@@ -13,6 +13,7 @@ alias cls='clear'
 alias vim='vim -N'
 alias vi='vim -N'
 alias e='exit'
+alias grep='grep -i'
 
 function take {
 mkdir -p $1 
