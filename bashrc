@@ -8,4 +8,3 @@ export dotfiles=~/dotfiles
 . $dotfiles/git/contrib/git-completion.sh
 . $dotfiles/git/contrib/git-prompt.sh
 . $dotfiles/dirb/dirb.sh
-. $dotfiles/mac/config
