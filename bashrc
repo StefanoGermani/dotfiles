@@ -1,6 +1,6 @@
 export dotfiles=~/dotfiles
 
-. $dotfiles/bash/env
+. $dotfiles/bash/ps1
 . $dotfiles/bash/config
 . $dotfiles/bash/aliases
 . $dotfiles/ruby/aliases
