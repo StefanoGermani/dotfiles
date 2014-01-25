@@ -31,4 +31,4 @@ Jobs="\j"
 
 GIT_PS1_SHOWDIRTYSTATE="true"
 
-PS1="\n${BBlack}\u@\h ${BRed}\w${BYellow}\$(__git_ps1 ' { %s }')${BGreen}\n\$ "
+PS1="\n${Green}\u@\h ${BRed}\w${BYellow}\$(__git_ps1 ' { %s }')${BGreen}\n\$ "
